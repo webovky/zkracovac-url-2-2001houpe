@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+
+  <title>{%block title%}FlaskTemplate{%endblock%}</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favico.png') }}" />
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+<a href="https://github.com/spseol/startflask/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+
+<nav>
+  <p>
+    <img src="{{ url_for('static', filename='flask-icon.png') }}" alt="" />
+  </p>
+  <p>Právě je přihlášen uživatel.... </p>
+  <p>Nikdo není přihlášen. </p>
+  <ul>
+    <li><a href="{{ url_for('index') }}">Index</a></li>
+    <li><a href="{{ url_for('login') }}">LogIn</a></li>
+    <li><a href="{{ url_for('logout') }}">LogOut</a></li>
+    <li><a href="{{ url_for('adduser') }}">New Account</a></li>
+  </
+</nav>
+
+
+{% block obsah %}<div style="text-align:center;"> 
+
+<h2>Zkracovač URL</h2>
+
+<input type="text" placeholder="zadej URL ke zkácení" style="width:77%;">
+
+</div>{% endblock obsah %}
+
+<footer>
+Užitečné odkazy: 
+<ul>
+  <li><a href="https://www.w3schools.com/">HTML, CSS atd.</a></li>
+  <li><a href="http://docs.python.org">Python</a></li>
+  <li><a href="https://flask.palletsprojects.com/">Flask</a></li> 
+  <li><a href="https://jinja.palletsprojects.com/templates/">Jinja2</a></li>
+  <li><a href="https://ponyorm.com/">Pony ORM</a></li>
+</ul>
+</footer>
+
+</body>
+</html>

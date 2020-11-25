@@ -1,0 +1,13 @@
+{% extends "base.html.j2" %}
+
+{% block obsah %}
+
+<h2>Login</h2>
+
+<form method="post">
+<p><input type="text"     name="jmeno" placeholder="login"/> </p> 
+<p><input type="password" name="heslo" placeholder="heslo" /> </p>
+<p> <input type="submit" value="Odeslat přihlašovací údaje" /> </p>
+</form>
+
+{% endblock obsah %}

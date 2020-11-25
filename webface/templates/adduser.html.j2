@@ -1,0 +1,14 @@
+{% extends "base.html.j2" %}
+
+{% block obsah %}
+
+<h2>New Account</h2>
+
+<form method="post">
+<p><input type="text"     name="login" placeholder="login"/> </p> 
+<p><input type="password" name="passwd1" placeholder="zadej heslo" /> </p>
+<p><input type="password" name="passwd2" placeholder="heslo znovu pro ověření" /> </p>
+<p> <input type="submit" value="Vytvořit účet" /> </p>
+</form>
+
+{% endblock obsah %}

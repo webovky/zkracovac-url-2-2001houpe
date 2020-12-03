@@ -22,8 +22,12 @@
   <p>
     <img src="{{ url_for('static', filename='flask-icon.png') }}" alt="" />
   </p>
-  <p>Právě je přihlášen uživatel.... </p>
-  <p>Nikdo není přihlášen. </p>
+  {% if "user" in session %}
+    <p>Právě je přihlášen uživatel <strong>{{session["user"]}}</strong> </p>
+  {% else %}
+    <p>Nikdo není přihlášen. </p>
+  {% endif %}
+  
   <ul>
     <li><a href="{{ url_for('index') }}">Index</a></li>
     <li><a href="{{ url_for('login') }}">LogIn</a></li>
@@ -32,6 +36,9 @@
   </
 </nav>
 
+{%for category, message in get_flashed_messages(with_categories = true)%}
+  <p class = "{{category}}">{{message}}</p>
+{%endfor%}
 
 {% block obsah %}<div style="text-align:center;"> 
 

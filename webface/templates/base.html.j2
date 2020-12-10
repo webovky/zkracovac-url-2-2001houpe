@@ -43,9 +43,10 @@
 {% block obsah %}<div style="text-align:center;"> 
 
 <h2>Zkracovač URL</h2>
-
-<input type="text" placeholder="zadej URL ke zkácení" style="width:77%;">
-
+<form method = "POST">
+  <input type="text" name = "url" placeholder="Zadej URL ke zkrácení" style="width:77%;">
+  <input type="submit" value = "Zkrať!">
+</form>
 </div>{% endblock obsah %}
 
 <footer>

@@ -20,26 +20,37 @@ def login_required(function):
 
     return wrapper
 
+def validate_url(url):
+    if "http" in url:
+        return True
+    else:
+        return False
+
 
 @app.route("/", methods=["GET"])
 @db_session
 def index():
-    shortcut = "".join([random.choice(string.ascii_letters) for i in range(7)])
-    url = request.url_root
-    print(shortcut, url)
-
-    if "user" in session:
-        user = User.get(login=session["user"])
-        for addr in user.addresses:
-            print(addr.shortcut, addr.url)
-
     return render_template("base.html.j2")
 
 @app.route("/", methods=["POST"])
 @db_session
 def index_post():
     shortcut = "".join([random.choice(string.ascii_letters) for i in range(7)])
-    shortener = Shortener(shortcut=shortcut, url="http://.......")
+    
+    url = request.url_root
+    url = request.form.get("url")
+    if validate_url(url):
+        shortcut_url = request.url_root + shortcut
+        if "user" in session:
+            user = User.get(login = session.get("user"))    
+            shortener = Shortener(shortcut=shortcut, url = url, user = user)
+        else:
+            shortener = Shortener(shortcut=shortcut, url = url)
+    else:
+        flash("Nevalidní URL!")
+    return render_template("base.html.j2", shortcut_url = shortcut_url)
+
+        
     
 
 

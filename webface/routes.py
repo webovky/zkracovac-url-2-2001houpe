@@ -37,29 +37,29 @@ def index():
 def index_post():
     shortcut = "".join([random.choice(string.ascii_letters) for i in range(7)])
     
-    url = request.url_root
+    
     url = request.form.get("url")
     if validate_url(url):
-        shortcut_url = request.url_root + shortcut
+        shortcut_url = shortcut
         if "user" in session:
             user = User.get(login = session.get("user"))    
-            shortener = Shortener(shortcut=shortcut, url = url, user = user)
+            shortener = Shortener(shortcut=shortcut, url=url, user = user)
         else:
-            shortener = Shortener(shortcut=shortcut, url = url)
+            shortener = Shortener(shortcut=shortcut, url=url)
     else:
         flash("Nevalidní URL!")
-    return render_template("base.html.j2", shortcut_url = shortcut_url)
+    return render_template("base.html.j2", shortcut_url = shortcut_url, url =url)
 
         
     
 
 
 @app.route("/<string:shortcut>", methods=["GET"])
+@db_session
 def short_redirect(shortcut):
     shortener = Shortener.get(shortcut=shortcut)
-    if shortener.user:
-        print(shortener.user.login)
-    return render_template("base.html.j2")
+    print(shortcut)
+    return redirect(shortener.url)
 
 
 @app.route("/adduser/", methods=["GET"])

@@ -48,6 +48,15 @@
   <input type="submit" value = "Zkrať!">
 </form>
 </div>{% endblock obsah %}
+<a href="{{url}}">{{url}}</a>  <   <a href="{{url}}">{{shortcut_url}}</a>
+
+{% if "user" in session%}
+  shortener = Shortener(shortcut=shortcut, url=url, user = user)
+  <ul>
+    <li>  <a href="{{url}}">{{url}}</a>  <   <a href="{{url}}">{{shortcut_url}}</a></li>
+  </ul>
+{% else %}
+{% endif %}
 
 <footer>
 Užitečné odkazy: 

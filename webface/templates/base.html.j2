@@ -50,13 +50,13 @@
 </div>{% endblock obsah %}
 <a href="{{url}}">{{url}}</a>  <   <a href="{{url}}">{{shortcut_url}}</a>
 
-{% if "user" in session%}
-  shortener = Shortener(shortcut=shortcut, url=url, user = user)
-  <ul>
-    <li>  <a href="{{url}}">{{url}}</a>  <   <a href="{{url}}">{{shortcut_url}}</a></li>
-  </ul>
-{% else %}
-{% endif %}
+{%if "user" in session %}
+<p>Vaše adresy:</p>
+{%for url in adresy %}
+<p><a href = "{{url}}"> {{url.shortcut}} </a>  <  <a href = "{{url}}"> {{url.url}} </a></p>
+{%endfor%}
+{%endif%}
+
 
 <footer>
 Užitečné odkazy: 

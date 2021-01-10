@@ -30,14 +30,14 @@ def validate_url(url):
 @app.route("/", methods=["GET"])
 @db_session
 def index():
-    return render_template("base.html.j2")
+    user = User.get(login = session.get("user"))
+    adresy = list(user.addresses)
+    return render_template("base.html.j2", adresy = adresy)
 
 @app.route("/", methods=["POST"])
 @db_session
 def index_post():
     shortcut = "".join([random.choice(string.ascii_letters) for i in range(7)])
-    
-    
     url = request.form.get("url")
     if validate_url(url):
         shortcut_url = shortcut
